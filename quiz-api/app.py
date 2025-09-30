@@ -59,6 +59,55 @@ def add_question():
 
     return {"message": "Question ajoutée avec succès"}, 201
 
+@app.route('/questions', methods=['GET'])
+def get_question_by_position():
+    # Récupérer le paramètre "position" de l'URL
+    position = request.args.get("position", type=int)
+
+    if position is None:
+        return jsonify({"error": "Le paramètre 'position' est requis"}), 400
+
+    try:
+        conn = sqlite3.connect(DB_PATH)
+        conn.row_factory = sqlite3.Row  # Pour obtenir un dict
+        cur = conn.cursor()
+
+        # Requête SQL pour récupérer la question par position
+        cur.execute("SELECT * FROM Question WHERE position = ?", (position,))
+        row = cur.fetchone()
+        conn.close()
+
+        if row is None:
+            return jsonify({"message": "Aucune question à cette position"}), 404
+
+        question = dict(row)
+        return jsonify(question), 200
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+    
+@app.route('/questions/<int:questionId>', methods=['GET'])
+def get_question_by_id(questionId):
+    try:
+        conn = sqlite3.connect(DB_PATH)
+        conn.row_factory = sqlite3.Row
+        cur = conn.cursor()
+
+        cur.execute("SELECT * FROM Question WHERE id = ?", (questionId,))
+        row = cur.fetchone()
+        conn.close()
+
+        if row is None:
+            return jsonify({"message": "Question introuvable"}), 404
+
+        question = dict(row)
+        return jsonify(question), 200
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+    
+
+
 if __name__ == "__main__":
     app.run()
     
