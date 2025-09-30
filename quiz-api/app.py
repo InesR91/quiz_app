@@ -44,7 +44,7 @@ def add_question():
     # Récupérer le JSON du body
     data = request.get_json()
     print("Données reçues :", data)  # Debug
-    
+
 
     # Créer un objet Question
     question = Question(
