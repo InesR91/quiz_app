@@ -1,4 +1,4 @@
 venv/
 .vscode
 __pycache__
-quiz.db
+quiz_bdd_prime.db
