@@ -12,7 +12,7 @@ COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
 
 # Creation d'une base vide
-RUN touch quiz.db
+RUN touch quiz_bdd_prime.db
 
 # Variables d'environement de production
 ENV FLASK_DEBUG=0
@@ -23,7 +23,7 @@ ENV FLASK_APP=app.py
 COPY . .
 
 # Informations sur l'image
-LABEL maintainer="Nom Prénom <nom.prénom@esiee.fr>" \
+LABEL maintainer="ROBIN Inès <inesrobin91@orange.fr>" \
     version="1.0"
 
 # Commande de démarrage du serveur gunicorn
