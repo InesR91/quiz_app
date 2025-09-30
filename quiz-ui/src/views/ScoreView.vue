@@ -2,7 +2,7 @@
 import { ref } from 'vue';
 import { RouterLink } from 'vue-router';
 
-// --- Données factices (à remplacer par les données du back-end) ---
+// --- Données test (à remplacer par les données du back-end) ---
 const userScore = ref(85); // Score de l'utilisateur actuel
 
 // Classement des meilleurs scores
@@ -15,8 +15,8 @@ const highScores = ref([
 ]);
 
 // Classement de l'utilisateur
-const userRank = ref(4); // 4ème position dans le classement
-// --- Fin des données factices ---
+const userRank = ref(4);
+// --- Fin test ---
 </script>
 
 <template>
