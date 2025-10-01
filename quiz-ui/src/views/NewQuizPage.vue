@@ -1,6 +1,9 @@
 <script setup>
 import { ref, onMounted } from 'vue';
-// import quizApiService from "@/services/QuizApiService";
+import participationStorageService from '@/services/ParticipationStorageService';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
 
 onMounted(async () => {
   console.log('New Quiz page mounted');
@@ -9,7 +12,9 @@ onMounted(async () => {
 const username = ref('');
 
 function launchNewQuiz() {
-  console.log('Launch new quiz with', this.username);
+  console.log('Launch new quiz with', username.value);
+  participationStorageService.savePlayerName(username);
+  router.push('/questions');
 }
 </script>
 
@@ -18,6 +23,5 @@ function launchNewQuiz() {
 
   <p>Saisissez votre nom :</p>
   <input type="text" v-model="username" />
-  <p>{{ Username }}</p>
   <button @click="launchNewQuiz">Go</button>
 </template>
