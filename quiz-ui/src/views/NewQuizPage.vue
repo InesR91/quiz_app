@@ -5,14 +5,11 @@ import { ref, onMounted } from 'vue';
 onMounted(async () => {
   console.log('New Quiz page mounted');
 });
-data() {
-  return {
-    username: ''
-  }
-}
-function launchNewQuiz() {
-    console.log('Launch new quiz with', this.username);
 
+const username = ref('');
+
+function launchNewQuiz() {
+  console.log('Launch new quiz with', this.username);
 }
 </script>
 
